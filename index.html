@@ -1,18 +1,35 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>PokeDex</title>
-  <link rel="stylesheet" href="./style.css" />
-  <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore os 151 Pokémon de Kanto. Busque por nome, filtre por tipo e descubra suas estatísticas.">
+  <meta name="theme-color" content="#f5f5f0">
+  <title>Pokédex — Explore Kanto</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
 </head>
 <body>
-
-  <div class="container">
-    <h1>Pokedex</h1>
-    <ul data-js="pokedex" class="pokedex"></ul>
-  </div>
-  
-  <script src="./app.js"></script>
+  <header class="site-header"><a class="brand" href="./" aria-label="Pokédex, início"><span class="pokeball" aria-hidden="true"></span>pokédex<span class="brand-dot">.</span></a><span class="edition">GUIA DE CAMPO <span> / KANTO</span></span></header>
+  <main class="container">
+    <section class="hero" aria-labelledby="page-title">
+      <div><p class="eyebrow"><span></span> PRIMEIRA GERAÇÃO · Nº 001–151</p><h1 id="page-title">Um mundo para<br><em>descobrir.</em></h1><p class="intro">Cada Pokémon, uma nova descoberta. Explore os tipos,<br class="desktop-break"> conheça suas habilidades e encontre seus favoritos.</p></div>
+      <div class="hero-mark" aria-hidden="true"><span class="pokeball"></span><span class="hero-caption">151 POKÉMON · UMA AVENTURA</span></div>
+    </section>
+    <section aria-label="Explorar Pokémon">
+      <div class="toolbar">
+        <div class="search-wrap"><span aria-hidden="true">⌕</span><label class="sr-only" for="search">Buscar por nome ou número</label><input id="search" type="search" placeholder="Busque por nome ou número…" autocomplete="off"></div>
+        <div class="select-wrap"><label for="type">Tipo</label><select id="type"><option value="">Todos os tipos</option></select></div>
+        <div class="select-wrap"><label for="sort">Ordenar</label><select id="sort"><option value="number">Menor número</option><option value="name">Nome A–Z</option><option value="reverse">Maior número</option></select></div>
+      </div>
+      <div class="results-bar"><h2>Explore a coleção</h2><p id="count" role="status" aria-live="polite">Preparando sua Pokédex…</p></div>
+      <div id="notice" class="notice" role="status" hidden><p id="notice-text"></p><button id="retry" class="action" type="button" hidden>Tentar novamente</button></div>
+      <ul data-js="pokedex" class="pokedex" aria-label="Pokémon" aria-busy="true"></ul>
+      <div id="empty" class="empty" hidden><span aria-hidden="true">⌕</span><h3>Nenhum Pokémon por aqui.</h3><p>Tente outro nome, número ou tipo.</p><button id="reset" class="action" type="button">Limpar filtros</button></div>
+    </section>
+  </main>
+  <footer><a class="brand" href="./">pokédex<span class="brand-dot">.</span></a><p>Feito para quem nunca deixou de explorar.</p><span>Dados: <a href="https://pokeapi.co/">PokéAPI</a></span></footer>
+  <dialog id="details" aria-labelledby="detail-name"><button id="close-details" class="close" type="button" aria-label="Fechar detalhes">✕</button><div id="detail-content"></div></dialog>
+  <noscript><p class="notice">Ative o JavaScript para explorar a Pokédex.</p></noscript>
 </body>
 </html>
